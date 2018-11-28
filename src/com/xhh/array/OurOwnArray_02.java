@@ -98,6 +98,73 @@ public class OurOwnArray_02 {
         data[index] = e;
     }
 
+    /**
+     * 查看数组中是否含有元素e
+     * @return
+     */
+    public boolean contains(int e){
+        for (int i = 0;i < size;i ++){
+            if(data[i] == e){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查看数组中元素e所存在的索引，若不存在e，则返回 -1
+     * @return
+     */
+    public int find(int e){
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 从数组中删除第1个元素，返回删除的元素
+     * @return
+     */
+    public int removeFirst(){
+        return remove(0);
+    }
+
+    /**
+     * 从数组中删除最后1个元素，返回删除的元素
+     * @return
+     */
+    public int removeLast(){
+        return remove(size - 1);
+    }
+
+    /**
+     * 从数组中删除index位置的元素，返回删除的元素
+     * @return
+     */
+    public int remove(int index){
+        if (index <0 || index > size ){
+            throw new IllegalArgumentException("remove failed. required index <0 或 > size ");
+        }
+        for(int i = index+1;i < size; i++){
+            data[i-1] = data[i];
+        }
+        size--;
+        return data[index];
+    }
+
+    /**
+     * 从数组中删除元素e
+     * @return
+     */
+    public void removeElement(int e){
+        int index = find(e);
+        if (index != -1) {
+            remove(index);
+        }
+    }
 
     @Override
     public String toString() {

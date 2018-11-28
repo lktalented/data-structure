@@ -17,5 +17,15 @@ public class Main {
         System.out.println(ourArray);
         ourArray.addFirst(-1);
         System.out.println(ourArray);
+
+        ourArray.remove(2);
+        System.out.println(ourArray);
+
+        ourArray.removeElement(4);
+        System.out.println(ourArray);
+
+        ourArray.removeFirst();
+        System.out.println(ourArray);
+
     }
 }
