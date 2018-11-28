@@ -1,11 +1,11 @@
-package com.xhh.Array;
+package com.xhh.array;
 
 /**
  * 数组基础
  * luokai
  * 2018/11/28 0028 下午 4:44
  */
-public class arrayBasic_01 {
+public class ArrayBasic_01 {
     public static void main(String[] args) {
         int[]arr = new int[10];
         for (int i = 0;i<arr.length;i++){
