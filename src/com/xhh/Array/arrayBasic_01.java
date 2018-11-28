@@ -25,7 +25,5 @@ public class arrayBasic_01 {
         for (int i = 0; i < scores.length; i++) {
             System.out.println(scores[i]);
         }
-
-
     }
 }
