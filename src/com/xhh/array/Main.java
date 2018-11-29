@@ -1,6 +1,4 @@
-package com.xhh;
-
-import com.xhh.array.OurOwnArray_02;
+package com.xhh.array;
 
 /**
  * luokai
@@ -8,7 +6,7 @@ import com.xhh.array.OurOwnArray_02;
  */
 public class Main {
     public static void main(String[] args) {
-        OurOwnArray_02 ourArray = new OurOwnArray_02(20);
+        OurOwnArray ourArray = new OurOwnArray(20);
         for (int i = 0; i < 10; i++) {
             ourArray.addLast(i);
         }

@@ -5,7 +5,7 @@ package com.xhh.array;
  * luokai
  * 2018/11/28 0028 下午 4:44
  */
-public class ArrayBasic_01 {
+public class ArrayBasic {
     public static void main(String[] args) {
         int[]arr = new int[10];
         for (int i = 0;i<arr.length;i++){

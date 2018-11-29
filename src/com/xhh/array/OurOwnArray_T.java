@@ -1,27 +1,27 @@
 package com.xhh.array;
 
 /**
- * 我们自己封装的数组
+ * 我们自己封装的数组(支持泛型)
  * luokai
  * 2018/11/28 0028 下午 6:31
  */
-public class OurOwnArray_02 {
-    private int[] data;
+public class OurOwnArray_T<E> {
+    private E[] data;
     private int size;
 
     /**
      * 构造函数，传入数组的容量capacity构造Array
      * @param capacity
      */
-    public OurOwnArray_02(int capacity) {
-        data = new int[capacity];
+    public OurOwnArray_T(int capacity) {
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
     /**
      * 无参数的构造函数,默认数组的容量capacity =10
      */
-    public OurOwnArray_02(){
+    public OurOwnArray_T(){
         this(10);
     }
 
@@ -49,25 +49,28 @@ public class OurOwnArray_02 {
     /**
      * 在所有元素前添加元素
      */
-    public void addFirst(int e){
+    public void addFirst(E e){
         this.add(0,e);
     }
     /**
      * 在所有元素后面添加元素
      */
-    public void addLast(int e){
+    public void addLast(E e){
         this.add(size,e);
     }
 
     /**
      * 在第index个位置，插入1个新元素e
      */
-    public void add(int index ,int e) {
-        if (size == data.length){
-            throw new IllegalArgumentException("add failed. array is full!");
-        }
+    public void add(int index ,E e) {
+
         if (index <0 || index > size ){
             throw new IllegalArgumentException("add failed. required index <0 或 > size ");
+        }
+        //扩容
+        if (size == data.length){
+//            throw new IllegalArgumentException("add failed. array is full!");
+            resize( 2 * data.length );
         }
         for (int i = size-1;i >= index ;i-- ){
             data[i+1] = data[i];
@@ -80,7 +83,7 @@ public class OurOwnArray_02 {
      * 获取index索引位置的元素
      * @return
      */
-    public int get(int index){
+    public E get(int index){
         if (index < 0 || index >=size){
             throw new IllegalArgumentException("Get Failed. Index is illegal.");
         }
@@ -91,7 +94,7 @@ public class OurOwnArray_02 {
      * 修改index索引位置的元素 e
      * @return
      */
-    public void set(int index,int e){
+    public void set(int index,E e){
         if (index < 0 || index >=size){
             throw new IllegalArgumentException("Get Failed. Index is illegal.");
         }
@@ -102,9 +105,9 @@ public class OurOwnArray_02 {
      * 查看数组中是否含有元素e
      * @return
      */
-    public boolean contains(int e){
+    public boolean contains(E e){
         for (int i = 0;i < size;i ++){
-            if(data[i] == e){
+            if(data[i].equals(e)){
                 return true;
             }
         }
@@ -115,9 +118,9 @@ public class OurOwnArray_02 {
      * 查看数组中元素e所存在的索引，若不存在e，则返回 -1
      * @return
      */
-    public int find(int e){
+    public int find(E e){
         for (int i = 0; i < size; i++) {
-            if (data[i] == e){
+            if (data[i].equals(e)){
                 return i;
             }
         }
@@ -128,7 +131,7 @@ public class OurOwnArray_02 {
      * 从数组中删除第1个元素，返回删除的元素
      * @return
      */
-    public int removeFirst(){
+    public E removeFirst(){
         return remove(0);
     }
 
@@ -136,7 +139,7 @@ public class OurOwnArray_02 {
      * 从数组中删除最后1个元素，返回删除的元素
      * @return
      */
-    public int removeLast(){
+    public E removeLast(){
         return remove(size - 1);
     }
 
@@ -144,7 +147,7 @@ public class OurOwnArray_02 {
      * 从数组中删除index位置的元素，返回删除的元素
      * @return
      */
-    public int remove(int index){
+    public E remove(int index){
         if (index <0 || index > size ){
             throw new IllegalArgumentException("remove failed. required index <0 或 > size ");
         }
@@ -152,6 +155,11 @@ public class OurOwnArray_02 {
             data[i-1] = data[i];
         }
         size--;
+        data[size] = null;
+        //缩容
+        if(size == data.length / 4  && data.length / 2 != 0 ){
+            resize(data.length / 2);
+        }
         return data[index];
     }
 
@@ -159,11 +167,23 @@ public class OurOwnArray_02 {
      * 从数组中删除元素e
      * @return
      */
-    public void removeElement(int e){
+    public void removeElement(E e){
         int index = find(e);
         if (index != -1) {
             remove(index);
         }
+    }
+
+    /**
+     * 改变数组容量
+     * @param newCapacity
+     */
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i]=data[i];
+        }
+        data = newData;
     }
 
     @Override
