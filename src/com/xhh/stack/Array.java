@@ -165,6 +165,7 @@ public class Array<E> {
         if (index <0 || index > size ){
             throw new IllegalArgumentException("remove failed. required index <0 或 > size ");
         }
+        E ret = data[index];
         for(int i = index+1;i < size; i++){
             data[i-1] = data[i];
         }
@@ -174,7 +175,7 @@ public class Array<E> {
         if(size == data.length / 4  && data.length / 2 != 0 ){
             resize(data.length / 2);
         }
-        return data[index];
+        return ret;
     }
 
     /**
