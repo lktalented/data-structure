@@ -38,11 +38,11 @@ public class LoopQueue<E> implements Queue<E> {
 
     @Override
     public void enqueue(E e) {
-        if (tail + 1 % data.length == front){
+        if ((tail + 1) % data.length == front){
             resize(getCapacity() * 2);
         }
             data[tail] = e ;
-            tail = tail + 1 % data.length;
+            tail = (tail + 1) % data.length;
             size ++ ;
 
 
@@ -51,7 +51,7 @@ public class LoopQueue<E> implements Queue<E> {
     private void resize(int newCapacity) {
         E[] newData = (E[]) new Object[newCapacity + 1];
         for (int i = 0 ; i < size ; i ++){
-            newData[i] = data[ i + front % data.length];
+            newData[i] = data[ (i + front) % data.length];
         }
         data = newData;
         front = 0;
@@ -65,7 +65,7 @@ public class LoopQueue<E> implements Queue<E> {
         }
         E ret = data[front];
         data[front] = null;
-        front = front + 1 % data.length;
+        front = (front + 1) % data.length;
         size -- ;
 
         if (size == data.length / 4 && data.length / 2 != 0 ){
