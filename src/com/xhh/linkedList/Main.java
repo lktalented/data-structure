@@ -15,7 +15,7 @@ public class Main {
         }
         linkedList.add(666,2);
         System.out.println(linkedList);
-
+        System.out.println(linkedList.get(2));
     }
    
     
