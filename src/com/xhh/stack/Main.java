@@ -1,5 +1,8 @@
 package com.xhh.stack;
 
+import java.util.Date;
+import java.util.Queue;
+
 /**
  * stcak的测试类
  * luokai
@@ -7,6 +10,9 @@ package com.xhh.stack;
  */
 public class Main {
     public static void main(String[] args) {
+        Date date = new Date();
+        System.out.println(date.getTime());
+
         ArrayStack<Integer> stack = new ArrayStack<>();
 
         for (int i = 0; i < 5; i++) {
