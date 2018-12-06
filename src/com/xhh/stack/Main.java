@@ -1,7 +1,9 @@
 package com.xhh.stack;
 
-import java.util.Date;
-import java.util.Queue;
+import com.xhh.queue.ArrayQueue;
+import com.xhh.queue.LoopQueue;
+
+import java.util.Random;
 
 /**
  * stcak的测试类
@@ -9,19 +11,29 @@ import java.util.Queue;
  * 2018/11/29 0029 下午 4:57
  */
 public class Main {
-    public static void main(String[] args) {
-        Date date = new Date();
-        System.out.println(date.getTime());
-
-        ArrayStack<Integer> stack = new ArrayStack<>();
-
-        for (int i = 0; i < 5; i++) {
-            stack.push(i);
+    //测试使用stack运行opCount个enqueue和dequeue操作所需要的时间，单位： 秒
+    public static double testStack(Stack<Integer> stack, int opcount ){
+        long startTime = System.nanoTime();
+        Random random = new Random();
+        for (int i = 0; i < opcount; i++) {
+            stack.push(random.nextInt(Integer.MAX_VALUE));
         }
-        System.out.println(stack);
-        stack.pop();
-        System.out.println(stack);
-        System.out.println("stack.peek():"+stack.peek());
+        for (int i = 0; i < opcount; i++) {
+            stack.pop();
+        }
+        long endTime = System.nanoTime();
 
+        return (endTime - startTime) / 1000000000.0;
+
+    }
+
+    public static void main(String[] args) {
+        int opCount =1000000;
+        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        double time1 = testStack(arrayStack, opCount);
+        System.out.println("arrayStack, time :" + time1 + "s" );
+        LinkedListStack<Integer> linkedListStack = new LinkedListStack<>();
+        double time2 = testStack(linkedListStack, opCount);
+        System.out.println("linkedListStack, time :" + time2 + "s" );
     }
 }

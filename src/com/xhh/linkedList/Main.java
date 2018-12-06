@@ -16,7 +16,14 @@ public class Main {
         linkedList.add(666,2);
         System.out.println(linkedList);
         System.out.println(linkedList.get(2));
+
+        linkedList.remove(2);
+        System.out.println(linkedList);
+
+        linkedList.removeFirst();
+        System.out.println(linkedList);
+
+        linkedList.removeLast();
+        System.out.println(linkedList);
     }
-   
-    
 }

@@ -1,4 +1,4 @@
-package com.xhh.linkedList;
+package com.xhh.stack;
 
 /**
  * 链表实现
@@ -6,6 +6,7 @@ package com.xhh.linkedList;
  * 2018/12/5 0005 下午 2:09
  */
 public class LinkedList<E> {
+
     private class Node{
         public E e;
         public Node next;
