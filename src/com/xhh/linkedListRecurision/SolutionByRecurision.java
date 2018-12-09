@@ -10,13 +10,18 @@ class SolutionByRecurision {
         if (head == null){
             return null;
         }
-        ListNode res =  removeElements(head.next,val);
+
+       /* ListNode res =  removeElements(head.next,val);
         if(head.val == val){
             return res;
         }else {
             head.next = res;
         }
-        return head;
+        return head;*/
+       /*简化写法*/
+        head.next = removeElements(head.next,val);
+        return head.val == val ? head.next : head;
+
     }
 
     public static void main(String[] args) {
