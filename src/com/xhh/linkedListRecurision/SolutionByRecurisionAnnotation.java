@@ -2,7 +2,7 @@ package com.xhh.linkedListRecurision;/// Leetcode 203. Remove Linked List Elemen
 /// https://leetcode.com/problems/remove-linked-list-elements/description/
 
 /**
- * 使用递归完成
+ * 使用递归完成(戴调试注释)
  */
 class SolutionByRecurisionAnnotation {
 
